@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "watch": "mocha ./current/*.js --timeout 5000 --watch",
-    "test": "mocha ./current/*.js --timeout 5000"
+    "test": "mocha ./current/*.js --timeout 5000",
+    "test:lib": "mocha lib.test.js"
   },
   "keywords": [],
   "author": "",
