@@ -1,6 +1,6 @@
- /**
- * @param {number} val 
- * @param {ListNode|undefined} next 
+/**
+ * @param {number} val
+ * @param {ListNode|undefined} next
  */
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
@@ -11,14 +11,19 @@ function ListNode(val, next) {
  * @param {number[]} arr
  */
 function toLinkedList(arr) {
-  return arr.reverse().reduce((lastNode, current) => {
+  return [...arr].reverse().reduce((lastNode, current) => {
     return new ListNode(current, lastNode);
   }, undefined);
 }
 
+/**
+ *
+ * @param {ListNode} head
+ * @returns
+ */
 function toArray(head) {
-  var vals = [head.val];
-  var pointer = head;
+  const vals = [head.val];
+  let pointer = head;
   while (pointer.next) {
     vals.push(pointer.next.val);
     pointer = pointer.next;
@@ -26,8 +31,43 @@ function toArray(head) {
   return vals;
 }
 
+/**
+ *
+ * @param {number} val
+ * @param {TreeNode} left
+ * @param {TreeNode} right
+ */
+function TreeNode(val, left, right) {
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
+}
+
+/**
+ * create Binary tree nodes from array
+ * @param {number[]} arr
+ */
+function createTree(arr) {
+  const nodes = arr.map((n) => new TreeNode(n));
+
+  for (let i = 1; i < nodes.length; i++) {
+    if (i % 2 === 0) {
+      // this is a right child
+      const parent = nodes[Math.floor(i / 2) - 1];
+      parent.right = nodes[i];
+    } else {
+      // this is a left chld
+      const parent = nodes[Math.floor(i / 2)];
+      parent.left = nodes[i];
+    }
+  }
+  return nodes[0];
+}
+
 module.exports = {
   ListNode,
   toLinkedList,
-  toArray
-}
+  toArray,
+  createTree,
+  TreeNode,
+};
