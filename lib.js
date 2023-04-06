@@ -45,10 +45,13 @@ function TreeNode(val, left, right) {
 
 /**
  * create Binary tree nodes from array
- * @param {number[]} arr
+ * @param {Array<number | null>} arr
+ * @returns {TreeNode}
  */
 function createTree(arr) {
-  const nodes = arr.map((n) => new TreeNode(n));
+  const nodes = arr.map((n) => {
+    return n !== null ? new TreeNode(n) : null;
+  });
 
   for (let i = 1; i < nodes.length; i++) {
     if (i % 2 === 0) {

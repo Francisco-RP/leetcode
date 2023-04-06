@@ -20,7 +20,7 @@ describe("Linked Lists", function () {
 });
 
 describe("TreeNode createTree", () => {
-  it("should create a tree node in", () => {
+  it("should create a tree node", () => {
     const actual = createTree([1, 2, 3, 4, 5]);
     const expected = {
       val: 1,
@@ -43,6 +43,22 @@ describe("TreeNode createTree", () => {
         right: null,
       },
     };
+    assert.deepStrictEqual(JSON.stringify(actual), JSON.stringify(expected));
+  });
+  it("should create a tree node with nulls", () => {
+    const actual = createTree([3, 1, null, null, 2]);
+    const expected = {
+      val: 3,
+      left: { val: 1, left: null, right: { val: 2, left: null, right: null } },
+      right: null,
+    };
+    assert.deepStrictEqual(JSON.stringify(actual), JSON.stringify(expected));
+  });
+
+  it("another one with null", () => {
+    const actual = createTree([1, null, 2]);
+    const expected = { val: 1, left: null, right: { val: 2, left: null, right: null } };
+
     assert.deepStrictEqual(JSON.stringify(actual), JSON.stringify(expected));
   });
 });
