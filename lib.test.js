@@ -61,4 +61,67 @@ describe("TreeNode createTree", () => {
 
     assert.deepStrictEqual(JSON.stringify(actual), JSON.stringify(expected));
   });
+
+  it("it should handle whole branches being null", () => {
+    // prettier-ignore
+    const actual = createTree([
+      1,    // 0:  root
+      4,    // 1:  left child of index 0
+      4,    // 2:  right child of index 0
+      null, // 3:  left child of index 1
+      2,    // 4:  right child of index 1
+      2,    // 5:  left child of index 2
+      null, // 6:  right child of index 2
+      1,    // 7:  left child of index 4
+      null, // 8:  right child of index 4
+      6,    // 9:  left child of index 5
+      8,    // 10: right child of index 5
+      null, // 11: left child of index 7
+      null, // 12: right child of index 7
+      null, // 13: left child of index 9 
+      null, // 14: right child of index 9
+      1,    // 15: left child of index 10
+      3,    // 16: right child of index 10
+    ]);
+    // 0, root = 0
+    // 1, add left
+    // 2, add right, set root to index 1
+    // 3, add left
+    // 4, add right, set root to 2
+    // 5, add left
+    // 6, add right, set root = 4 (3 is null so skip),
+    // 7, add left
+    // 8, add right, set root = 5,
+    // 9, add left
+    // 10, add right, set root = 7 (6 is null so skip),
+    // 11, add left
+    // 12, add right, set root = 9 (8 is null so skip),
+    // 13, add left
+    // 14, add right, set root = 10
+    // 15, add left
+    // 16, add right
+    const expected = {
+      val: 1,
+      left: {
+        val: 4,
+        left: null,
+        right: { val: 2, left: { val: 1, left: null, right: null }, right: null },
+      },
+      right: {
+        val: 4,
+        left: {
+          val: 2,
+          left: { val: 6, left: null, right: null },
+          right: {
+            val: 8,
+            left: { val: 1, left: null, right: null },
+            right: { val: 3, left: null, right: null },
+          },
+        },
+        right: null,
+      },
+    };
+
+    assert.deepStrictEqual(JSON.stringify(actual), JSON.stringify(expected));
+  });
 });

@@ -53,17 +53,24 @@ function createTree(arr) {
     return n !== null ? new TreeNode(n) : null;
   });
 
+  let parentIndex = 0;
+  let parent = nodes[parentIndex];
   for (let i = 1; i < nodes.length; i++) {
     if (i % 2 === 0) {
-      // this is a right child
-      const parent = nodes[Math.floor(i / 2) - 1];
       parent.right = nodes[i];
+      // set next parent here after setting right side
+      // if parent is null, continue down the line until you find one
+      parentIndex += 1;
+      parent = nodes[parentIndex];
+      while (!parent) {
+        parentIndex += 1;
+        parent = nodes[parentIndex];
+      }
     } else {
-      // this is a left chld
-      const parent = nodes[Math.floor(i / 2)];
       parent.left = nodes[i];
     }
   }
+
   return nodes[0];
 }
 
