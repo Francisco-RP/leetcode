@@ -5,7 +5,8 @@
   "scripts": {
     "watch": "mocha ./current/*.js --timeout 5000 --watch",
     "test": "mocha ./current/*.js --timeout 5000",
-    "test:lib": "mocha lib.test.js --watch"
+    "test:lib": "mocha lib.test.js --watch",
+    "plop": "plop"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "mocha": "^10.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.18.0"
+    "eslint": "^8.18.0",
+    "plop": "^3.1.2"
   }
 }
