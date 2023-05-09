@@ -5,8 +5,8 @@ module.exports = function (plop) {
     const [, , funcName] = matches1 || [];
     const [, altFuncName] = matches2 || [];
     answers.funcName = funcName || altFuncName || "REPLACE_ME";
-    if (funcName) {
-      return `found function name: ${funcName}`;
+    if (funcName || altFuncName) {
+      return `found function name: ${funcName || altFuncName}`;
     }
     return "could not find function name";
   });
