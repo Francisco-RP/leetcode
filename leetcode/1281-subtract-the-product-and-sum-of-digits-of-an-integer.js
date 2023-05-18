@@ -10,16 +10,16 @@ const { describe, test: it } = require("node:test");
  * @return {number}
  */
 const subtractProductAndSum = function (n) {
-  const digits = String(n);
-  let product = 1;
+  let prod = 1;
   let sum = 0;
-  for (let i = 0; i < digits.length; i++) {
-    const num = Number(digits.charAt(i));
-    product *= num;
+  while (n > 0) {
+    const num = n % 10;
+    prod *= num;
     sum += num;
+    n = Math.floor(n / 10);
   }
 
-  return product - sum;
+  return prod - sum;
 };
 
 describe("subtractProductAndSum", function () {
