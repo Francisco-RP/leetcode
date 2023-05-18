@@ -17,7 +17,7 @@ function toLinkedList(arr) {
 }
 
 /**
- *
+ * Converts a Linked List into an array
  * @param {ListNode} head
  * @returns
  */
@@ -74,10 +74,34 @@ function createTree(arr) {
   return nodes[0];
 }
 
+/**
+ * Convert a Binary tree to an array
+ * @param {TreeNode} rootNode
+ * @returns {number[]}
+ */
+function bstToArray(rootNode) {
+  const arr = [rootNode.val];
+  const next = [rootNode];
+  while (next.length) {
+    const node = next.shift();
+    if (node.left) {
+      next.push(node.left);
+      arr.push(node.left.val);
+    }
+    if (node.right) {
+      next.push(node.right);
+      arr.push(node.right.val);
+    }
+  }
+
+  return arr;
+}
+
 module.exports = {
   ListNode,
   toLinkedList,
   toArray,
   createTree,
   TreeNode,
+  bstToArray,
 };

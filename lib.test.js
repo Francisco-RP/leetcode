@@ -126,3 +126,11 @@ describe("TreeNode createTree", () => {
     assert.deepStrictEqual(JSON.stringify(actual), JSON.stringify(expected));
   });
 });
+
+describe("bstToArray test", () => {
+  it("should convert binary tree to array", () => {
+    const root = createTree([4, 2, 7, 1, 3]);
+    const arr = bstToArray(root);
+    assert.deepStrictEqual(arr, [4, 2, 7, 1, 3]);
+  });
+});
