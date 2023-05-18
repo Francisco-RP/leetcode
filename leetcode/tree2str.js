@@ -1,4 +1,5 @@
-const assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 const { createTree, TreeNode } = require("../lib");
 
 // https://leetcode.com/problems/construct-string-from-binary-tree/

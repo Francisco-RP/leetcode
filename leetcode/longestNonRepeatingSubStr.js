@@ -31,7 +31,8 @@ var lengthOfLongestSubstring = function (s) {
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("lengthOfLongestSubstring", function () {
   it("Example 1", function () {

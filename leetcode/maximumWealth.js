@@ -16,7 +16,8 @@ var maximumWealth = function (accounts) {
 
 // ------------------------------------------------------------
 // URL
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("maximumWealth", function () {
   it("accounts = [[1,2,3],[3,2,1]]", function () {

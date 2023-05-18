@@ -49,7 +49,8 @@ var kWeakestRows = function (mat, k) {
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("kWeakestRows", function () {
   it("example 1", function () {

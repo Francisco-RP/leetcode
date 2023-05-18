@@ -78,7 +78,8 @@ var numberToWords = function (num) {
 };
 
 // ------------------------------------------------------------
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("numberToWords", function () {
   it("0", function () {

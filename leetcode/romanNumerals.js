@@ -31,7 +31,8 @@ var romanToInt = function (s) {
 };
 
 // ------------------------------------------------------------
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("romanToInt", function () {
   it("III", function () {

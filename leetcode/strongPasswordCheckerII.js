@@ -4,9 +4,9 @@
  */
 var strongPasswordCheckerII = function (password) {
   // It has at least 8 characters.
-  if (password.length < 8) return false
+  if (password.length < 8) return false;
 
-  const ruleCheck = []
+  const ruleCheck = [];
   // It contains at least one lowercase letter.
   ruleCheck.push(/[a-z]+/.test(password));
 
@@ -18,16 +18,17 @@ var strongPasswordCheckerII = function (password) {
 
   // It contains at least one special character. The special characters are the characters in the following string: "!@#$%^&*()-+".
   ruleCheck.push(/[!@#$%^&*()\-+]+/.test(password));
-  
+
   // It does not contain 2 of the same character in adjacent positions (i.e., "aab" violates this condition, but "aba" does not).
   ruleCheck.push(!/(.)\1/g.test(password));
 
-  return ruleCheck.every(rule => rule === true);
+  return ruleCheck.every((rule) => rule === true);
 };
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/strong-password-checker-ii/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("strongPasswordCheckerII", function () {
   it("IloveLe3tcode!", function () {

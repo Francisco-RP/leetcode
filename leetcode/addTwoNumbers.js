@@ -26,7 +26,7 @@ var addTwoNumbers = function (l1, l2) {
     sum,
     carryOver = false;
 
-  while (typeof node1?.val === 'number' || typeof node2?.val === 'number' || carryOver) {
+  while (typeof node1?.val === "number" || typeof node2?.val === "number" || carryOver) {
     sum = (node1?.val || 0) + (node2?.val || 0);
 
     if (carryOver) {
@@ -44,18 +44,19 @@ var addTwoNumbers = function (l1, l2) {
       current = start;
     } else {
       current.next = new ListNode(sum);
-      current = current.next
+      current = current.next;
     }
 
-    node1 = node1?.next
-    node2 = node2?.next
+    node1 = node1?.next;
+    node2 = node2?.next;
   }
   return start;
 };
 
 // ------------------------------------------------------------
 // URL
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 var { toLinkedList, toArray } = require("../lib");
 
 describe("addTwoNumbers", function () {

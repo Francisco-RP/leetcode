@@ -16,10 +16,10 @@
  * @return {number[][]}
  */
 var reconstructQueue = function (people) {
-  people.sort((a,b) => a[0] === b[0] ? a[1] - b[1] : b[0] - a[0]);
-  var result = []
+  people.sort((a, b) => (a[0] === b[0] ? a[1] - b[1] : b[0] - a[0]));
+  var result = [];
   for (var i = 0, len = people.length; i < len; i++) {
-    result.splice(people[i][1], 0,  people[i]);
+    result.splice(people[i][1], 0, people[i]);
   }
   return result;
 };
@@ -28,7 +28,8 @@ var reconstructQueue = function (people) {
 // https://leetcode.com/problems/queue-reconstruction-by-height/
 // can't take credit, this post gave me the solution: https://leetcode.com/problems/queue-reconstruction-by-height/discuss/2211641/Visual-Explanation-or-JAVA-Greedy
 
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("reconstructQueue", function () {
   it("Example 1", function () {

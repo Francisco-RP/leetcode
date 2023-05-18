@@ -49,7 +49,8 @@ var validIPAddress = function (queryIP) {
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/validate-ip-address/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("validIPAddress", function () {
   it("172.16.254.1", function () {
@@ -81,25 +82,25 @@ describe("validIPAddress", function () {
     const expected = "Neither";
     assert.strictEqual(actual, expected);
   });
-  
+
   it("2001:0db8:85a3:0000:0000:8a2e:0370:7334", function () {
     const actual = validIPAddress("2001:0db8:85a3:0000:0000:8a2e:0370:7334");
     const expected = "IPv6";
     assert.strictEqual(actual, expected);
   });
-  
+
   it("2001:db8:85a3:0:0:8A2E:0370:7334", function () {
     const actual = validIPAddress("2001:db8:85a3:0:0:8A2E:0370:7334");
     const expected = "IPv6";
     assert.strictEqual(actual, expected);
   });
-  
+
   it("2001:0db8:85a3::8A2E:037j:7334", function () {
     const actual = validIPAddress("2001:0db8:85a3::8A2E:037j:7334");
     const expected = "Neither";
     assert.strictEqual(actual, expected);
   });
- 
+
   it("02001:0db8:85a3:0000:0000:8a2e:0370:7334", function () {
     const actual = validIPAddress("02001:0db8:85a3:0000:0000:8a2e:0370:7334");
     const expected = "Neither";

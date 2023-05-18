@@ -39,7 +39,8 @@ var middleNode = function (head) {
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/middle-of-the-linked-list/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;

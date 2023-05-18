@@ -1,31 +1,37 @@
-function toRoman (num, one, five, ten) {
+function toRoman(num, one, five, ten) {
   if (num === 0) return "";
   if (num === 9) return one + ten;
   if (num === 4) return one + five;
   if (num === 5) return five;
   if (num <= 3) return Array(num).fill(one).join("");
-  return five + Array(num - 5).fill(one).join("");
+  return (
+    five +
+    Array(num - 5)
+      .fill(one)
+      .join("")
+  );
 }
 
 /**
  * @param {number} num
  * @return {string}
  */
- var intToRoman = function (num) {
-  var [th, hun, tens, ones] = String(num).padStart(4, '0').split('');
-  
-  let result = '';
+var intToRoman = function (num) {
+  var [th, hun, tens, ones] = String(num).padStart(4, "0").split("");
 
-  result += Array(parseInt(th,10)).fill("M").join("");
-  result += toRoman(parseInt(hun,10), "C", "D", "M");
-  result += toRoman(parseInt(tens,10), "X", "L", "C");
-  result += toRoman(parseInt(ones,10), "I", "V", "X");
+  let result = "";
 
-  return result
+  result += Array(parseInt(th, 10)).fill("M").join("");
+  result += toRoman(parseInt(hun, 10), "C", "D", "M");
+  result += toRoman(parseInt(tens, 10), "X", "L", "C");
+  result += toRoman(parseInt(ones, 10), "I", "V", "X");
+
+  return result;
 };
 
 // ------------------------------------------------------------
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("intToRoman", function () {
   it("3", function () {
@@ -38,7 +44,7 @@ describe("intToRoman", function () {
   it("1994 to MCMXCIV", function () {
     assert.strictEqual(intToRoman(1994), "MCMXCIV");
   });
-  
+
   it("60 to LX", function () {
     assert.strictEqual(intToRoman(60), "LX");
   });

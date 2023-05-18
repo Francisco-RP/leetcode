@@ -1,5 +1,6 @@
-const assert = require("assert");
-const { toLinkedList, toArray, createTree } = require("./lib");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
+const { toLinkedList, toArray, createTree, bstToArray } = require("./lib");
 
 describe("Linked Lists", function () {
   it("toLinkedList should convert an array into a Linked List", function () {

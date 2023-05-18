@@ -59,7 +59,8 @@ Memory Usage: 46.3 MB, less than 97.33% of JavaScript online submissions for Min
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("minDeletions", function () {
   it('s = "aab"', function () {

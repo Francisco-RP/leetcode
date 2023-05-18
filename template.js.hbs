@@ -1,23 +1,24 @@
-const assert = require("assert");
+const assert = require("node:assert");
+const { describe, test } = require("node:test");
 
 // {{url}}
 
 {{{code}}}
 
 describe("{{funcName}}", function () {
-  it("Test Case 1", function () {
+  test("Test Case 1", function () {
     const actual = {{funcName}}();
     const expected = true;
     assert.strictEqual(actual, expected);
   });
 
-  it("Test Case 2", function () {
+  test("Test Case 2", function () {
     const actual = {{funcName}}();
     const expected = true;
     assert.strictEqual(actual, expected);
   });
 
-  it("Test Case 3", function () {
+  test("Test Case 3", function () {
     const actual = {{funcName}}();
     const expected = true;
     assert.strictEqual(actual, expected);

@@ -23,7 +23,8 @@ var canConstruct = function (ransomNote, magazine) {
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/ransom-note/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("canConstruct", function () {
   it(`ransomNote = "a", magazine = "b"`, function () {
@@ -43,7 +44,7 @@ describe("canConstruct", function () {
     const expected = true;
     assert.strictEqual(actual, expected);
   });
-  
+
   it(`ransomNote = "aab", magazine = "baa"`, function () {
     const actual = canConstruct("aab", "baa");
     const expected = true;

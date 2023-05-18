@@ -35,7 +35,8 @@ var isPalindrome = function (head) {
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/palindrome-linked-list/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;

@@ -1,4 +1,5 @@
-const assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 // https://leetcode.com/problems/shortest-distance-to-a-character/
 

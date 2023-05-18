@@ -1,6 +1,7 @@
 // ------------------------------------------------------------
 // URL https://leetcode.com/problems/subarray-product-less-than-k/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 /*
 

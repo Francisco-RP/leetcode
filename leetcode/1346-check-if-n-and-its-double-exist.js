@@ -1,4 +1,5 @@
-const assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 // https://leetcode.com/problems/check-if-n-and-its-double-exist/description/
 

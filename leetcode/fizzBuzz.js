@@ -23,14 +23,15 @@ var fizzBuzz = function (n) {
       result.push("Buzz");
       continue;
     }
-    result.push(i+'');
+    result.push(i + "");
   }
   return result;
 };
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/fizz-buzz/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("fizzBuzz", function () {
   it("n = 3", function () {

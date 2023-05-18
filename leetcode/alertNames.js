@@ -1,4 +1,5 @@
-const assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 // https://leetcode.com/problems/alert-using-same-key-card-three-or-more-times-in-a-one-hour-period/
 

@@ -3,17 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "watch": "mocha ./current/*.js --timeout 5000 --watch",
-    "test": "mocha ./current/*.js --timeout 5000",
-    "test:lib": "mocha lib.test.js --watch",
+    "watch": "node --test --watch ./current/*.js",
+    "test": "node --test ./current/*.js",
+    "test:lib": "node --test --watch lib.test.js",
     "plop": "plop"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "mocha": "^10.0.0"
-  },
   "devDependencies": {
     "eslint": "^8.18.0",
     "plop": "^3.1.2"

@@ -114,7 +114,8 @@ longestPalindrome = manacherAlgo;
 
 // ------------------------------------------------------------
 // https://leetcode.com/problems/longest-palindromic-substring/
-var assert = require("assert");
+const assert = require("node:assert");
+const { describe, test: it } = require("node:test");
 
 describe("longestPalindrome", async function () {
   it("example 1", function () {
