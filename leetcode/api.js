@@ -41,12 +41,10 @@ async function getQuestion(id) {
   try {
     const response = await fetchLikeAxios(LEETCODE_ALL_QUESTION_URL);
     const data = await response.json();
-    const question = data.stat_status_pairs.find((pair) => {
-      pair.stat.frontend_question_id === id;
-    });
+    const question = data.stat_status_pairs.find((pair) => pair.stat.frontend_question_id === id);
     if (question) {
       return {
-        title: question.stat.question__article__slug,
+        title: question.stat.question__title_slug,
         url: `${LEETCODE_BASE_URL}/problems/${question.stat.question__title_slug}/`,
       };
     }
