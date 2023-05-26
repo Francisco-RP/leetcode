@@ -2,11 +2,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Mocha Tests",
+      "name": "Tests",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "args": ["./current/*.js"],
       "cwd": "${workspaceRoot}",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
@@ -14,7 +12,12 @@
       "skipFiles": [
         "<node_internals>/**",
         "${workspaceFolder}/node_modules/**/*.js",
-      ]
+      ],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run-script",
+        "test"
+      ],
     }
   ]
 }
