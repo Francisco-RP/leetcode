@@ -18,6 +18,24 @@
         "run-script",
         "test"
       ],
+    },
+    {
+      "name": "Lib Tests",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": { "CI": "true", "NODE_ENV": "test" },
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/**/*.js",
+      ],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run-script",
+        "test:lib"
+      ],
     }
   ]
 }
