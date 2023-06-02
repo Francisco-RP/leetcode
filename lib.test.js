@@ -1,6 +1,6 @@
 const assert = require("node:assert");
 const { describe, test: it } = require("node:test");
-const { toLinkedList, toArray, createTree, bstToArray } = require("./lib");
+const { toLinkedList, toArray, createTree, bstToArray, arrToNtree } = require("./lib");
 
 describe("Linked Lists", function () {
   it("toLinkedList should convert an array into a Linked List", function () {
@@ -132,5 +132,80 @@ describe("bstToArray test", () => {
     const root = createTree([4, 2, 7, 1, 3]);
     const arr = bstToArray(root);
     assert.deepStrictEqual(arr, [4, 2, 7, 1, 3]);
+  });
+});
+
+describe("arrToNtree tests", () => {
+  it("should convert arr to N-Array Node tree", () => {
+    const arr = [1, null, 3, 2, 4, null, 5, 6];
+    const expected = {
+      val: 1,
+      children: [
+        {
+          val: 3,
+          children: [
+            { val: 5, children: [] },
+            { val: 6, children: [] },
+          ],
+        },
+        { val: 2, children: [] },
+        { val: 4, children: [] },
+      ],
+    };
+    const actual = JSON.stringify(arrToNtree(arr));
+    assert.deepStrictEqual(JSON.parse(actual), expected);
+  });
+
+  it("do it again", () => {
+    const arr = [
+      1,
+      null,
+      2,
+      3,
+      4,
+      5,
+      null,
+      null,
+      6,
+      7,
+      null,
+      8,
+      null,
+      9,
+      10,
+      null,
+      null,
+      11,
+      null,
+      12,
+      null,
+      13,
+      null,
+      null,
+      14,
+    ];
+    const expected = {
+      val: 1,
+      children: [
+        { val: 2, children: [] },
+        {
+          val: 3,
+          children: [
+            { val: 6, children: [] },
+            { val: 7, children: [{ val: 11, children: [{ val: 14, children: [] }] }] },
+          ],
+        },
+        { val: 4, children: [{ val: 8, children: [{ val: 12, children: [] }] }] },
+        {
+          val: 5,
+          children: [
+            { val: 9, children: [{ val: 13, children: [] }] },
+            { val: 10, children: [] },
+          ],
+        },
+      ],
+    };
+    const actual = JSON.stringify(arrToNtree(arr));
+    assert.deepStrictEqual(JSON.parse(actual), expected);
   });
 });

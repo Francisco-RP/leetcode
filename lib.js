@@ -97,6 +97,45 @@ function bstToArray(rootNode) {
   return arr;
 }
 
+function Node(val, children = []) {
+  this.val = val;
+  this.children = children;
+}
+
+/**
+ * Nary-Tree input serialization is represented in their level order traversal,
+ * each group of children is separated by the null value.
+ * @param {Array<number | null>} arr
+ * @returns {Node}
+ */
+function arrToNtree(arr) {
+  const nodes = arr.map((val) => {
+    if (val === null) return null;
+    return new Node(val);
+  });
+  let parentIndex = 0;
+  let parent = nodes[parentIndex];
+  let children = [];
+  for (let i = 2; i < nodes.length; i++) {
+    if (nodes[i] === null) {
+      // save and reset the children
+      parent.children = [...children];
+      children = [];
+      // set next parent
+      parentIndex += 1;
+      while (nodes[parentIndex] === null && parentIndex < i) {
+        parentIndex += 1;
+      }
+      parent = nodes[parentIndex];
+      continue;
+    }
+    children.push(nodes[i]);
+  }
+  parent.children = children;
+
+  return nodes[0];
+}
+
 module.exports = {
   ListNode,
   toLinkedList,
@@ -104,4 +143,6 @@ module.exports = {
   createTree,
   TreeNode,
   bstToArray,
+  arrToNtree,
+  Node,
 };
