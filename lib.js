@@ -136,6 +136,23 @@ function arrToNtree(arr) {
   return nodes[0];
 }
 
+/**
+ * console logs a 2D grid where coordinate 0,0 is bottom left
+ * @param {Array<Array<number | string>>} grid
+ */
+function drawGrid(grid) {
+  let str = "";
+  let rowStr = "";
+  grid.forEach((row) => {
+    row.forEach((col) => {
+      rowStr += " " + col;
+    });
+    str = rowStr + `\n` + str;
+    rowStr = "";
+  });
+  console.log(str);
+}
+
 module.exports = {
   ListNode,
   toLinkedList,
@@ -145,4 +162,5 @@ module.exports = {
   bstToArray,
   arrToNtree,
   Node,
+  drawGrid,
 };
