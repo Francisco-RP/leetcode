@@ -138,17 +138,30 @@ function arrToNtree(arr) {
 
 /**
  * console logs a 2D grid where coordinate 0,0 is bottom left
+ * adds x and y axis numbers, only handles up to double-digits
  * @param {Array<Array<number | string>>} grid
  */
 function drawGrid(grid) {
-  let str = "";
-  let rowStr = "";
+  let yCount = 0;
+
+  // holds the entire grid
+  let str =
+    "   " +
+    Array(grid[0].length)
+      .fill("")
+      .map((n, i) => String(i).padStart(2, 0))
+      .join(" ");
+
+  // hold the current row
+  let rowStr = " ";
+
   grid.forEach((row) => {
     row.forEach((col) => {
-      rowStr += " " + col;
+      rowStr += col + "  ";
     });
-    str = rowStr + `\n` + str;
-    rowStr = "";
+    str = String(yCount).padStart(2, 0) + rowStr + `\n` + str;
+    yCount += 1;
+    rowStr = " ";
   });
   console.log(str);
 }
