@@ -1,5 +1,6 @@
-const assert = require("assert");
-const { toLinkedList, createTree, TreeNode, ListNode } = require("../lib.js");
+const assert = require("node:assert");
+const { describe, test } = require("node:test");
+const { toLinkedList, createTree } = require("../lib.js");
 
 // https://leetcode.com/problems/linked-list-in-binary-tree/
 
@@ -26,66 +27,25 @@ const { toLinkedList, createTree, TreeNode, ListNode } = require("../lib.js");
  * False.
  *
  * In this context downward path means a path that starts at some node and goes downwards.
- * @param {ListNode} head
- * @param {TreeNode} root
+ * @param {import('../lib.js').ListNode} head
+ * @param {import('../lib.js').TreeNode} root
  * @return {boolean}
  */
 const isSubPath = function (head, root) {
   if (!root) return false;
-
-  const rootNodesToVisit = [];
-  if (root.left) {
-    rootNodesToVisit.push(root.left);
-  }
-  if (root.right) {
-    rootNodesToVisit.push(root.right);
-  }
-
-  let pathNodesToVisit = [];
-
-  /**
-   *
-   * @param {ListNode} linkNode
-   * @param {TreeNode} treeNode
-   */
-  function check(linkNode, treeNode) {
-    // starting from a tree node, check if value matches the one in the current linkNode
-    // if so, we start tracking a path
-    if (linkNode.val === treeNode.val) {
-      if (!linkNode.next) return true; // we've reached the end of the list so we found a path
-      if (treeNode.left?.val === linkNode.next.val) {
-        pathNodesToVisit.push(treeNode.left);
-      }
-      if (treeNode.right?.val === linkNode.next.val) {
-        pathNodesToVisit.push(treeNode.right);
-      }
-      const nextTreeNode = pathNodesToVisit.pop();
-      if (nextTreeNode) {
-        return check(linkNode.next, nextTreeNode);
-      }
-    }
-
-    // if we've reached here we need to start over from the head of the linked list
-    // and using another branch from the tree
-    pathNodesToVisit = [];
-    const nextTreeNode = rootNodesToVisit.pop();
-    if (!nextTreeNode) {
-      return false;
-    }
-    if (nextTreeNode.left) {
-      rootNodesToVisit.push(nextTreeNode.left);
-    }
-    if (nextTreeNode.right) {
-      rootNodesToVisit.push(nextTreeNode.right);
-    }
-    return check(head, nextTreeNode);
-  }
-
-  return check(head, root);
+  if (isSame(head, root)) return true;
+  return isSubPath(head, root.left) || isSubPath(head, root.right);
 };
 
+function isSame(head, root) {
+  if (!head) return true;
+  if (!root) return false;
+  if (head.val !== root.val) return false;
+  return isSame(head.next, root.left) || isSame(head.next, root.right);
+}
+
 describe("isSubPath", function () {
-  it("Test Case 1", function () {
+  test("Test Case 1", function () {
     const head = toLinkedList([4, 2, 8]);
     // prettier-ignore
     const root = createTree([
@@ -112,7 +72,7 @@ describe("isSubPath", function () {
     assert.strictEqual(actual, expected);
   });
 
-  it("Test Case 2", function () {
+  test("Test Case 2", function () {
     const head = toLinkedList([1, 4, 2, 6]);
     const root = createTree([
       1,
@@ -138,7 +98,7 @@ describe("isSubPath", function () {
     assert.strictEqual(actual, expected);
   });
 
-  it("Test Case 3", function () {
+  test("Test Case 3", function () {
     const head = toLinkedList([1, 4, 2, 6, 8]);
     const root = createTree([
       1,
@@ -164,14 +124,15 @@ describe("isSubPath", function () {
     assert.strictEqual(actual, expected);
   });
 
-  it("Test Case 4", function () {
+  test("Test Case 4", function () {
     const head = toLinkedList([1, 10]);
     const root = createTree([1, null, 1, 10, 1, 9]);
     const actual = isSubPath(head, root);
     const expected = true;
     assert.strictEqual(actual, expected);
   });
-  it("Test Case 5", function () {
+
+  test("Test Case 5", function () {
     const head = toLinkedList([4, 3, 3, 5, 4, 5, 5, 3, 2, 3, 4, 1, 1, 4, 3, 2, 5, 4, 1, 4]);
     const root = createTree([
       2,
@@ -1175,7 +1136,7 @@ describe("isSubPath", function () {
     assert.strictEqual(actual, expected);
   });
 
-  it("Test Case 6", function () {
+  test("Test Case 6", function () {
     const head = toLinkedList([2, 2, 1]);
     const root = createTree([2, null, 2, null, 2, null, 1]);
     const actual = isSubPath(head, root);
@@ -1183,7 +1144,7 @@ describe("isSubPath", function () {
     assert.strictEqual(actual, expected);
   });
 
-  it("Test Case 7", function () {
+  test("Test Case 7", function () {
     const head = toLinkedList([10, 2, 3, 3, 5, 8, 3, 10, 7, 5, 5]);
     const root = createTree([
       10,
