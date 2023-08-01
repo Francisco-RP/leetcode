@@ -18,6 +18,12 @@ describe("Linked Lists", function () {
     const actual = toArray(head);
     assert.deepStrictEqual(actual, expected);
   });
+  it("toArray using class method", function () {
+    const expected = [5, 6, 22, 11];
+    const head = toLinkedList(expected);
+    const actual = head.toArray();
+    assert.deepStrictEqual(actual, expected);
+  });
 });
 
 describe("TreeNode createTree", () => {
@@ -132,6 +138,18 @@ describe("bstToArray test", () => {
     const root = createTree([4, 2, 7, 1, 3]);
     const arr = bstToArray(root);
     assert.deepStrictEqual(arr, [4, 2, 7, 1, 3]);
+  });
+
+  it("should convert binary tree to array using class Method", () => {
+    const root = createTree([4, 2, 7, 1, 3]);
+    const arr = root.toArray();
+    assert.deepStrictEqual(arr, [4, 2, 7, 1, 3]);
+  });
+
+  it("should handle missing branches using null", () => {
+    const root = createTree([1, 2, null, null, 3, 4]);
+    const arr = root.toArray();
+    assert.deepStrictEqual(arr, [1, 2, null, null, 3, 4]);
   });
 });
 

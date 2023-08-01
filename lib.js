@@ -1,10 +1,26 @@
-/**
- * @param {number} val
- * @param {ListNode|undefined} next
- */
-function ListNode(val, next) {
-  this.val = val === undefined ? 0 : val;
-  this.next = next === undefined ? null : next;
+class ListNode {
+  /**
+   * @param {number} val
+   * @param {ListNode|undefined} next
+   */
+  constructor(val, next) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
+  }
+
+  /**
+   * Converts a Linked List into an array
+   * @returns
+   */
+  toArray() {
+    const vals = [this.val];
+    let pointer = this;
+    while (pointer.next) {
+      vals.push(pointer.next.val);
+      pointer = pointer.next;
+    }
+    return vals;
+  }
 }
 
 /**
@@ -31,16 +47,49 @@ function toArray(head) {
   return vals;
 }
 
-/**
- *
- * @param {number} val
- * @param {TreeNode} left
- * @param {TreeNode} right
- */
-function TreeNode(val, left, right) {
-  this.val = val === undefined ? 0 : val;
-  this.left = left === undefined ? null : left;
-  this.right = right === undefined ? null : right;
+class TreeNode {
+  /**
+   * @param {number} val
+   * @param {TreeNode} left
+   * @param {TreeNode} right
+   */
+  constructor(val, left, right) {
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
+  }
+
+  /**
+   * convert this binary tree and it's children to an array
+   * @returns {number[]}
+   */
+  toArray() {
+    // final array
+    let result = [this.val];
+
+    // nodes to visit using DFS
+    const next = [this];
+
+    while (next.length) {
+      const node = next.shift();
+      if (node.left) {
+        next.push(node.left);
+      }
+      if (node.right) {
+        next.push(node.right);
+      }
+      if (node.left || node.right) {
+        result.push(node.left?.val || null);
+        result.push(node.right?.val || null);
+      }
+    }
+
+    // trim any nulls from the end
+    while (result.at(-1) === null) {
+      result = result.slice(0, -1);
+    }
+    return result;
+  }
 }
 
 /**
@@ -75,6 +124,7 @@ function createTree(arr) {
 }
 
 /**
+ * @deprecated use the class instance method instead TreeNode.toArray()
  * Convert a Binary tree to an array
  * @param {TreeNode} rootNode
  * @returns {number[]}
