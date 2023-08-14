@@ -62,6 +62,10 @@ const squareFreeSubsets = function (nums) {
 };
 
 describe("squareFreeSubsets", function () {
+  /**
+   * @param {unknown} actual
+   * @param {unknown} expected
+   */
   function isEqual(actual, expected) {
     try {
       assert.strictEqual(actual, expected);
