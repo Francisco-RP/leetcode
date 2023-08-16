@@ -9,7 +9,7 @@
     "noFallthroughCasesInSwitch": false,
     "noUncheckedIndexedAccess": true,
     // get intellisense for the available platform APIs
-    "lib": ["es2020"],
+    "lib": ["es2022"],
     "target": "ES6"
   }
 }
