@@ -1,10 +1,15 @@
 class ListNode {
   /**
    * @param {number} val
-   * @param {ListNode|undefined} next
+   * @param {ListNode} [next]
    */
   constructor(val, next) {
     this.val = val === undefined ? 0 : val;
+
+    /**
+     * @type {ListNode?}
+     * @public
+     */
     this.next = next === undefined ? null : next;
   }
 
@@ -14,6 +19,9 @@ class ListNode {
    */
   toArray() {
     const vals = [this.val];
+    /**
+     * @type {ListNode}
+     */
     let pointer = this;
     while (pointer.next) {
       vals.push(pointer.next.val);
@@ -47,40 +55,66 @@ function toArray(head) {
   return vals;
 }
 
+/**
+ * @class
+ * @constructor
+ * @public
+ */
 class TreeNode {
   /**
    * @param {number} val
-   * @param {TreeNode} left
-   * @param {TreeNode} right
+   * @param {TreeNode} [left]
+   * @param {TreeNode} [right]
    */
   constructor(val, left, right) {
     this.val = val === undefined ? 0 : val;
+    /**
+     * @type {TreeNode?}
+     * @public
+     */
     this.left = left === undefined ? null : left;
+    /**
+     * @type {TreeNode?}
+     * @public
+     */
     this.right = right === undefined ? null : right;
+
+    /**
+     * @type {boolean}
+     * @public
+     */
+    this.discovered = false;
   }
 
   /**
    * convert this binary tree and it's children to an array
-   * @returns {number[]}
+   * @returns {Array<number | null>}
    */
   toArray() {
-    // final array
+    /**
+     * @type {Array<number | null>}
+     */
     let result = [this.val];
 
-    // nodes to visit using DFS
+    /**
+     * nodes to visit using DFS
+     * @type {TreeNode[]}
+     */
     const next = [this];
 
     while (next.length) {
       const node = next.shift();
-      if (node.left) {
-        next.push(node.left);
-      }
-      if (node.right) {
-        next.push(node.right);
-      }
-      if (node.left || node.right) {
-        result.push(node.left?.val || null);
-        result.push(node.right?.val || null);
+      if (node) {
+        if (node.left) {
+          next.push(node.left);
+        }
+        if (node.right) {
+          next.push(node.right);
+        }
+        if (node.left || node.right) {
+          result.push(node.left?.val || null);
+          result.push(node.right?.val || null);
+        }
       }
     }
 
@@ -95,18 +129,22 @@ class TreeNode {
 /**
  * create Binary tree nodes from array
  * @param {Array<number | null>} arr
- * @returns {TreeNode}
+ * @returns {TreeNode | null}
  */
 function createTree(arr) {
+  if (!arr.length) {
+    return null;
+  }
   const nodes = arr.map((n) => {
     return n !== null ? new TreeNode(n) : null;
   });
 
   let parentIndex = 0;
   let parent = nodes[parentIndex];
+
   for (let i = 1; i < nodes.length; i++) {
     if (i % 2 === 0) {
-      parent.right = nodes[i];
+      if (parent) parent.right = nodes[i];
       // set next parent here after setting right side
       // if parent is null, continue down the line until you find one
       parentIndex += 1;
@@ -116,7 +154,7 @@ function createTree(arr) {
         parent = nodes[parentIndex];
       }
     } else {
-      parent.left = nodes[i];
+      if (parent) parent.left = nodes[i];
     }
   }
 
@@ -134,29 +172,46 @@ function bstToArray(rootNode) {
   const next = [rootNode];
   while (next.length) {
     const node = next.shift();
-    if (node.left) {
-      next.push(node.left);
-      arr.push(node.left.val);
-    }
-    if (node.right) {
-      next.push(node.right);
-      arr.push(node.right.val);
+    if (node) {
+      if (node.left) {
+        next.push(node.left);
+        arr.push(node.left.val);
+      }
+      if (node.right) {
+        next.push(node.right);
+        arr.push(node.right.val);
+      }
     }
   }
 
   return arr;
 }
 
-function Node(val, children = []) {
-  this.val = val;
-  this.children = children;
+class Node {
+  /**
+   *
+   * @param {number} val
+   * @param {Node[]} children
+   */
+  constructor(val, children = []) {
+    /**
+     * @type {number}
+     * @public
+     */
+    this.val = val;
+    /**
+     * @type {Node[]}
+     * @public
+     */
+    this.children = children;
+  }
 }
 
 /**
  * Nary-Tree input serialization is represented in their level order traversal,
  * each group of children is separated by the null value.
  * @param {Array<number | null>} arr
- * @returns {Node}
+ * @returns {Node | null}
  */
 function arrToNtree(arr) {
   const nodes = arr.map((val) => {
@@ -169,7 +224,7 @@ function arrToNtree(arr) {
   for (let i = 2; i < nodes.length; i++) {
     if (nodes[i] === null) {
       // save and reset the children
-      parent.children = [...children];
+      if (parent) parent.children = [...children];
       children = [];
       // set next parent
       parentIndex += 1;
@@ -181,7 +236,7 @@ function arrToNtree(arr) {
     }
     children.push(nodes[i]);
   }
-  parent.children = children;
+  if (parent) parent.children = children;
 
   return nodes[0];
 }
