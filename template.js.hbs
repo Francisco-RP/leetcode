@@ -21,21 +21,42 @@ describe("{{funcName}}", function () {
     }
   }
 
-  test("Test Case 1", function () {
-    const actual = {{funcName}}();
-    const expected = true;
-    isEqual(actual, expected);
-  });
+  {{#unitTests}}
+    test("Test Case {{index}}", function () {
+      const {{{params}}};
+      const actual = {{../funcName}}({{../funcArgs}});
+      const expected = {{{expected}}};
+      isEqual(actual, expected);
+    });
 
-  test("Test Case 2", function () {
-    const actual = {{funcName}}();
-    const expected = true;
-    isEqual(actual, expected);
-  });
+  {{/unitTests}}
+  {{^unitTests}}
+    test("Test Case 1", function () {
+      {{#funcArgsArray}}
+      const {{.}} = null;
+      {{/funcArgsArray}}
+      const actual = {{funcName}}({{funcArgs}});
+      const expected = true;
+      isEqual(actual, expected);
+    });
 
-  test("Test Case 3", function () {
-    const actual = {{funcName}}();
-    const expected = true;
-    isEqual(actual, expected);
-  });
-});
+    test("Test Case 2", function () {
+      {{#funcArgsArray}}
+      const {{.}} = null;
+      {{/funcArgsArray}}
+      const actual = {{funcName}}({{funcArgs}});
+      const expected = true;
+      isEqual(actual, expected);
+    });
+
+    test("Test Case 3", function () {
+      {{#funcArgsArray}}
+      const {{.}} = null;
+      {{/funcArgsArray}}
+      const actual = {{funcName}}({{funcArgs}});
+      const expected = true;
+      isEqual(actual, expected);
+    });
+  {{/unitTests}}
+
+}); 
