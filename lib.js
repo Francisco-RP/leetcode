@@ -33,6 +33,7 @@ class ListNode {
 
 /**
  * @param {number[]} arr
+ * @returns {ListNode}
  */
 function toLinkedList(arr) {
   return [...arr].reverse().reduce((lastNode, current) => {
