@@ -85,6 +85,18 @@ class TreeNode {
      * @public
      */
     this.discovered = false;
+
+    /**
+     * @type {TreeNode | null}
+     * @public
+     */
+    this.parent = null;
+
+    /**
+     * @type {number}
+     * @public
+     */
+    this.level = 0;
   }
 
   /**
